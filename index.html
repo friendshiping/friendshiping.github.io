@@ -66,6 +66,75 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-spring" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/20/spring/" class="article-date">
+  <time datetime="2018-11-20T14:02:53.000Z" itemprop="datePublished">2018-11-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/20/spring/">spring</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="spring配置"><a href="#spring配置" class="headerlink" title="spring配置"></a>spring配置</h1><p>##1. 导包<br>        Spring基本包<br>        spring-aop-4.1.6.RELEASE.jar<br>        spring-beans-4.1.6.RELEASE.jar<br>        spring-core-4.1.6.RELEASE.jar<br>        spring-expression-4.1.6.RELEASE.jar<br>        Spring连接数据库<br>        mysql-connector-java-8.0.11.jar<br>        spring-jdbc-4.1.6.RELEASE.jar</p>
+<pre><code>javassist-3.22.0-GA.jar
+Spring上下文环境
+spring-context-4.1.6.RELEASE.jar
+spring-tx-4.1.6.RELEASE.jar
+spring依赖的日志包
+commons-logging-1.2.1.1.jar
+</code></pre><p>##2. Spring配置文件<br>                     <!-- 数据库连接--><br>    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"><br>        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property><br>        <property name="url" value="jdbc:mysql://localhost:3306/school?serverTimezone=UTC&amp;useSSL=false"></property><br>        <property name="username" value="root"></property><br>        <property name="password" value="root"></property><br>    </bean></p>
+<pre><code>        &lt;!--调用dataSource加载的xml文件创建factory--&gt;
+&lt;bean id=&quot;factory&quot; class=&quot;org.mybatis.spring.SqlSessionFactoryBean&quot;&gt;
+    &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;&gt;&lt;/property&gt;
+&lt;/bean&gt;
+
+
+
+            &lt;!--factory中对应属性值 通过对扫描包给其赋值--&gt;
+&lt;bean  class=&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;&gt;
+    &lt;property name=&quot;basePackage&quot; value=&quot;com.can.mapper&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;sqlSessionFactory&quot; ref=&quot;factory&quot;&gt;&lt;/property&gt;
+&lt;/bean&gt;
+
+
+
+        &lt;!--将包扫描的结果生成的类赋值给给定类的属性--&gt;
+&lt;bean id=&quot;sel&quot; class=&quot;com.can.sev.AirportImpl&quot;&gt;
+    &lt;property name=&quot;airportMapper&quot; ref=&quot;airportMapper&quot;&gt;&lt;/property&gt;
+&lt;/bean&gt;
+</code></pre><p>#注意#</p>
+<ol>
+<li>applicationContext.xml建立在src下（classpath默认会从这里开始找）</li>
+<li>ApplicationContext ac = new ClassPathXmlApplicationContext(“ApplicationContext.xml”);<br>（从classpath路径下找到applicationContext.xml加载）</li>
+<li>AirportImpl sel = ac.getBean(“sel”, AirportImpl.class);<br>（拿到Spring管理的类生成的对象）</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/20/spring/" data-id="cjopuophz00019ggij6zurm4v" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-mybatis" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/11/03/mybatis/" class="article-date">
@@ -153,7 +222,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/03/mybatis/" data-id="cjo1l2esk0001ckgi87f7o33m" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/03/mybatis/" data-id="cjopuopn800039ggibtw711t1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -189,7 +258,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/10/30/xc/" data-id="cjo1l2et50002ckgige2msyqq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/10/30/xc/" data-id="cjopuopi600029ggiv04nnocu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -295,7 +364,7 @@ hexo  g    (hexo generate 全命令)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/10/27/Test/" data-id="cjo1l2es70000ckgimo6iz18r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/10/27/Test/" data-id="cjopuoph200009ggit315or7y" class="article-share-link">Share</a>
       
       
     </footer>
@@ -334,6 +403,10 @@ hexo  g    (hexo generate 全命令)
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/11/20/spring/">spring</a>
+          </li>
         
           <li>
             <a href="/2018/11/03/mybatis/">mybatis</a>

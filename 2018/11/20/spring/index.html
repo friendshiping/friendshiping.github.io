@@ -5,20 +5,20 @@
   
 
   
-  <title>xc | Blog</title>
+  <title>spring | Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="This is my Blog!!">
+  <meta name="description" content="spring配置##1. 导包        Spring基本包        spring-aop-4.1.6.RELEASE.jar        spring-beans-4.1.6.RELEASE.jar        spring-core-4.1.6.RELEASE.jar        spring-expression-4.1.6.RELEASE.jar        Spring">
 <meta name="keywords" content="Blog">
 <meta property="og:type" content="article">
-<meta property="og:title" content="xc">
-<meta property="og:url" content="http://yoursite.com/2018/10/30/xc/index.html">
+<meta property="og:title" content="spring">
+<meta property="og:url" content="http://yoursite.com/2018/11/20/spring/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="This is my Blog!!">
+<meta property="og:description" content="spring配置##1. 导包        Spring基本包        spring-aop-4.1.6.RELEASE.jar        spring-beans-4.1.6.RELEASE.jar        spring-core-4.1.6.RELEASE.jar        spring-expression-4.1.6.RELEASE.jar        Spring">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-30T01:36:21.644Z">
+<meta property="og:updated_time" content="2018-11-20T14:44:28.100Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xc">
-<meta name="twitter:description" content="This is my Blog!!">
+<meta name="twitter:title" content="spring">
+<meta name="twitter:description" content="spring配置##1. 导包        Spring基本包        spring-aop-4.1.6.RELEASE.jar        spring-beans-4.1.6.RELEASE.jar        spring-core-4.1.6.RELEASE.jar        spring-expression-4.1.6.RELEASE.jar        Spring">
   
     <link rel="alternate" href="/atom.xml" title="Blog" type="application/atom+xml">
   
@@ -65,10 +65,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-xc" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-spring" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/10/30/xc/" class="article-date">
-  <time datetime="2018-10-30T01:36:21.000Z" itemprop="datePublished">2018-10-30</time>
+    <a href="/2018/11/20/spring/" class="article-date">
+  <time datetime="2018-11-20T14:02:53.000Z" itemprop="datePublished">2018-11-20</time>
 </a>
     
   </div>
@@ -79,7 +79,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      xc
+      spring
     </h1>
   
 
@@ -87,11 +87,44 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="spring配置"><a href="#spring配置" class="headerlink" title="spring配置"></a>spring配置</h1><p>##1. 导包<br>        Spring基本包<br>        spring-aop-4.1.6.RELEASE.jar<br>        spring-beans-4.1.6.RELEASE.jar<br>        spring-core-4.1.6.RELEASE.jar<br>        spring-expression-4.1.6.RELEASE.jar<br>        Spring连接数据库<br>        mysql-connector-java-8.0.11.jar<br>        spring-jdbc-4.1.6.RELEASE.jar</p>
+<pre><code>javassist-3.22.0-GA.jar
+Spring上下文环境
+spring-context-4.1.6.RELEASE.jar
+spring-tx-4.1.6.RELEASE.jar
+spring依赖的日志包
+commons-logging-1.2.1.1.jar
+</code></pre><p>##2. Spring配置文件<br>                     <!-- 数据库连接--><br>    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"><br>        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property><br>        <property name="url" value="jdbc:mysql://localhost:3306/school?serverTimezone=UTC&amp;useSSL=false"></property><br>        <property name="username" value="root"></property><br>        <property name="password" value="root"></property><br>    </bean></p>
+<pre><code>        &lt;!--调用dataSource加载的xml文件创建factory--&gt;
+&lt;bean id=&quot;factory&quot; class=&quot;org.mybatis.spring.SqlSessionFactoryBean&quot;&gt;
+    &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;&gt;&lt;/property&gt;
+&lt;/bean&gt;
+
+
+
+            &lt;!--factory中对应属性值 通过对扫描包给其赋值--&gt;
+&lt;bean  class=&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;&gt;
+    &lt;property name=&quot;basePackage&quot; value=&quot;com.can.mapper&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;sqlSessionFactory&quot; ref=&quot;factory&quot;&gt;&lt;/property&gt;
+&lt;/bean&gt;
+
+
+
+        &lt;!--将包扫描的结果生成的类赋值给给定类的属性--&gt;
+&lt;bean id=&quot;sel&quot; class=&quot;com.can.sev.AirportImpl&quot;&gt;
+    &lt;property name=&quot;airportMapper&quot; ref=&quot;airportMapper&quot;&gt;&lt;/property&gt;
+&lt;/bean&gt;
+</code></pre><p>#注意#</p>
+<ol>
+<li>applicationContext.xml建立在src下（classpath默认会从这里开始找）</li>
+<li>ApplicationContext ac = new ClassPathXmlApplicationContext(“ApplicationContext.xml”);<br>（从classpath路径下找到applicationContext.xml加载）</li>
+<li>AirportImpl sel = ac.getBean(“sel”, AirportImpl.class);<br>（拿到Spring管理的类生成的对象）</li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/10/30/xc/" data-id="cjopuopi600029ggiv04nnocu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/20/spring/" data-id="cjopuophz00019ggij6zurm4v" class="article-share-link">Share</a>
       
       
     </footer>
@@ -100,19 +133,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/11/03/mybatis/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          mybatis
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/10/27/Test/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/11/03/mybatis/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Blog 搭建</div>
+      <div class="article-nav-title">mybatis</div>
     </a>
   
 </nav>
