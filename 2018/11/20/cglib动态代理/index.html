@@ -5,19 +5,20 @@
   
 
   
-  <title>Blog</title>
+  <title>cglib 动态代理 | Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="This is my Blog!!">
+  <meta name="description" content="cglib 动态代理被代理的类1234567891011121314public class Cglib &amp;#123;    public Cglib() &amp;#123;        System.out.println(&amp;quot;cglib&amp;quot;);    &amp;#125;    public void cglibDynamicMethod()&amp;#123;        System.out">
 <meta name="keywords" content="Blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cglib 动态代理">
+<meta property="og:url" content="http://yoursite.com/2018/11/20/cglib动态代理/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="This is my Blog!!">
+<meta property="og:description" content="cglib 动态代理被代理的类1234567891011121314public class Cglib &amp;#123;    public Cglib() &amp;#123;        System.out.println(&amp;quot;cglib&amp;quot;);    &amp;#125;    public void cglibDynamicMethod()&amp;#123;        System.out">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-01-18T06:47:47.365Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog">
-<meta name="twitter:description" content="This is my Blog!!">
+<meta name="twitter:title" content="cglib 动态代理">
+<meta name="twitter:description" content="cglib 动态代理被代理的类1234567891011121314public class Cglib &amp;#123;    public Cglib() &amp;#123;        System.out.println(&amp;quot;cglib&amp;quot;);    &amp;#125;    public void cglibDynamicMethod()&amp;#123;        System.out">
   
     <link rel="alternate" href="/atom.xml" title="Blog" type="application/atom+xml">
   
@@ -64,78 +65,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-spring" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/20/spring/" class="article-date">
-  <time datetime="2018-11-20T14:02:53.000Z" itemprop="datePublished">2018-11-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/20/spring/">spring</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="spring配置"><a href="#spring配置" class="headerlink" title="spring配置"></a>spring配置</h1><p>##1. 导包<br>        Spring基本包<br>        spring-aop-4.1.6.RELEASE.jar<br>        spring-beans-4.1.6.RELEASE.jar<br>        spring-core-4.1.6.RELEASE.jar<br>        spring-expression-4.1.6.RELEASE.jar<br>        Spring连接数据库<br>        mysql-connector-java-8.0.11.jar<br>        spring-jdbc-4.1.6.RELEASE.jar</p>
-<pre><code>javassist-3.22.0-GA.jar
-Spring上下文环境
-spring-context-4.1.6.RELEASE.jar
-spring-tx-4.1.6.RELEASE.jar
-spring依赖的日志包
-commons-logging-1.2.1.1.jar
-</code></pre><p>##2. Spring配置文件<br>                     <!-- 数据库连接--><br>    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"><br>        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property><br>        <property name="url" value="jdbc:mysql://localhost:3306/school?serverTimezone=UTC&amp;useSSL=false"></property><br>        <property name="username" value="root"></property><br>        <property name="password" value="root"></property><br>    </bean></p>
-<pre><code>        &lt;!--调用dataSource加载的xml文件创建factory--&gt;
-&lt;bean id=&quot;factory&quot; class=&quot;org.mybatis.spring.SqlSessionFactoryBean&quot;&gt;
-    &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;&gt;&lt;/property&gt;
-&lt;/bean&gt;
-
-
-
-            &lt;!--factory中对应属性值 通过对扫描包给其赋值--&gt;
-&lt;bean  class=&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;&gt;
-    &lt;property name=&quot;basePackage&quot; value=&quot;com.can.mapper&quot;&gt;&lt;/property&gt;
-    &lt;property name=&quot;sqlSessionFactory&quot; ref=&quot;factory&quot;&gt;&lt;/property&gt;
-&lt;/bean&gt;
-
-
-
-        &lt;!--将包扫描的结果生成的类赋值给给定类的属性--&gt;
-&lt;bean id=&quot;sel&quot; class=&quot;com.can.sev.AirportImpl&quot;&gt;
-    &lt;property name=&quot;airportMapper&quot; ref=&quot;airportMapper&quot;&gt;&lt;/property&gt;
-&lt;/bean&gt;
-</code></pre><p>#注意#</p>
-<ol>
-<li>applicationContext.xml建立在src下（classpath默认会从这里开始找）</li>
-<li>ApplicationContext ac = new ClassPathXmlApplicationContext(“ApplicationContext.xml”);<br>（从classpath路径下找到applicationContext.xml加载）</li>
-<li>AirportImpl sel = ac.getBean(“sel”, AirportImpl.class);<br>（拿到Spring管理的类生成的对象）</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/20/spring/" data-id="cjr1oldso0002wkgiv8sb33f3" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-cglib动态代理" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-cglib动态代理" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/11/20/cglib动态代理/" class="article-date">
   <time datetime="2018-11-20T08:48:34.000Z" itemprop="datePublished">2018-11-20</time>
@@ -148,8 +78,8 @@ commons-logging-1.2.1.1.jar
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/20/cglib动态代理/">cglib 动态代理</a>
+    <h1 class="article-title" itemprop="name">
+      cglib 动态代理
     </h1>
   
 
@@ -179,250 +109,28 @@ commons-logging-1.2.1.1.jar
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-mybatis" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/03/mybatis/" class="article-date">
-  <time datetime="2018-11-03T13:11:37.000Z" itemprop="datePublished">2018-11-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2018/11/20/spring/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
+          spring
+        
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/03/mybatis/">mybatis</a>
-    </h1>
   
+    <a href="/2018/11/03/mybatis/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">mybatis</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="mybatis-初识"><a href="#mybatis-初识" class="headerlink" title="mybatis 初识"></a>mybatis 初识</h1><h2 id="导包"><a href="#导包" class="headerlink" title="导包"></a>导包</h2><h3 id="导入mybatis的包："><a href="#导入mybatis的包：" class="headerlink" title="导入mybatis的包："></a>导入mybatis的包：</h3><ol>
-<li><p>mybatis-3.4.6.jar</p>
-<h3 id="导入mybatis的依赖包"><a href="#导入mybatis的依赖包" class="headerlink" title="导入mybatis的依赖包"></a>导入mybatis的依赖包</h3></li>
-<li><p>日志包：</p>
-<ol>
-<li><p>log4j :</p>
-<ol>
-<li>log4j-1.2.17.jar</li>
-<li>log4j-api-2.3.jar</li>
-<li>log4j-core-2.3.jar</li>
-</ol>
-</li>
-<li><p>slf4j:</p>
-<ol>
-<li>slf4j-api-1.7.25.jar</li>
-<li><p>slf4j-log4j12-1.7.25.jar</p>
-</li>
-<li><p>Apache Commons Logging:</p>
-<ol>
-<li>commons-logging-1.2.jar </li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>ant:（注解包）</p>
-<ol>
-<li>ant-1.9.6.jar</li>
-<li>ant-launcher-1.9.6.jar </li>
-</ol>
-</li>
-<li>asm:（）<ol>
-<li>asm-5.2.jar</li>
-</ol>
-</li>
-<li>cglib:（）<ol>
-<li>cglib-3.2.5.jar</li>
-</ol>
-</li>
-<li>javassist（）<ol>
-<li>javassist-3.22.0-GA.jar</li>
-</ol>
-</li>
-<li><p>ognl:（）</p>
-<ol>
-<li>ognl-3.1.16.jar</li>
-</ol>
-</li>
-<li><p>mybatis是对jdbc的封装所以导入数据库连接的包：</p>
-<ol>
-<li>mysql-connector-java-8.0.11</li>
-</ol>
-</li>
-</ol>
-<h1 id="官方依赖表"><a href="#官方依赖表" class="headerlink" title="官方依赖表"></a>官方依赖表</h1><p><img src="/css/images/dependent.png" alt="dependent"></p>
-<h1 id="mybatis-xml"><a href="#mybatis-xml" class="headerlink" title="mybatis.xml"></a>mybatis.xml</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&apos;1.0&apos; encoding=&apos;UTF-8&apos;?&gt;</span><br><span class="line">&lt;!DOCTYPE configuration</span><br><span class="line">        PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span><br><span class="line">        &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">	&lt;!--包别名--&gt;</span><br><span class="line">    &lt;typeAliases&gt;</span><br><span class="line">        &lt;package name=&quot;包别名&quot;&gt;&lt;/package&gt;</span><br><span class="line">    &lt;/typeAliases&gt;</span><br><span class="line"></span><br><span class="line">    &lt;environments default=&quot;default&quot;&gt;</span><br><span class="line">        &lt;environment id=&quot;default&quot;&gt;</span><br><span class="line">            &lt;transactionManager type=&quot;JDBC&quot;&gt;&lt;/transactionManager&gt;</span><br><span class="line">            &lt;dataSource type=&quot;POOLED&quot;&gt;</span><br><span class="line">                &lt;property name=&quot;driver&quot; value=&quot;com.mysql.cj.jdbc.Driver&quot;&gt;&lt;/property&gt;</span><br><span class="line">                &lt;property name=&quot;url&quot; value=&quot;jdbc:mysql://主机IP:端口/数据库名?</span><br><span class="line">                serverTimezone=UTC&amp;amp;useSSL=false&quot;&gt;&lt;/property&gt;</span><br><span class="line">                &lt;property name=&quot;username&quot; value=&quot;数据库用户名&quot;&gt;&lt;/property&gt;</span><br><span class="line">                &lt;property name=&quot;password&quot; value=&quot;数据库密码&quot;&gt;&lt;/property&gt;</span><br><span class="line">            &lt;/dataSource&gt;</span><br><span class="line">        &lt;/environment&gt;</span><br><span class="line">    &lt;/environments&gt;</span><br><span class="line">&lt;!--包绑定扫描包package--&gt;</span><br><span class="line">    &lt;mappers&gt;</span><br><span class="line">        &lt;package name=&quot;package&quot;&gt;&lt;/package&gt;</span><br><span class="line">    &lt;/mappers&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="mapper-xml"><a href="#mapper-xml" class="headerlink" title="mapper.xml"></a>mapper.xml</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper</span><br><span class="line">        PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span><br><span class="line">        &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;mapper namespace=&quot;接口全路径&quot;&gt;</span><br><span class="line">&lt;!--对应的SQL语句--&gt;</span><br><span class="line"></span><br><span class="line">&lt;/mapper&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="resultMap"><a href="#resultMap" class="headerlink" title="resultMap"></a>resultMap</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--colum数据库对应的表单中的对应项，而property实体类对应的属性名--&gt;</span><br><span class="line">&lt;resultMap id=&quot;唯一的标识&quot; type=&quot;映射的pojo对象&quot;&gt;</span><br><span class="line">  &lt;id column=&quot;表的主键字段，或者可以为查询语句中的别名字段&quot; jdbcType=&quot;字段类型&quot;   property=&quot;映射pojo对象的主属性&quot; /&gt;</span><br><span class="line">  &lt;result column=&quot;表的一个字段（可以为任意表的一个字段）&quot; jdbcType=&quot;字段类型&quot; property=&quot;映射到pojo对象的一个属性（须为type定义的pojo对象中的一个属性）&quot;/&gt;</span><br><span class="line"></span><br><span class="line">  &lt;association property=&quot;pojo的一个对象属性&quot; javaType=&quot;pojo关联的pojo对象&quot;&gt;</span><br><span class="line">    &lt;id column=&quot;关联pojo对象对应表的主键字段&quot; jdbcType=&quot;字段类型&quot; property=&quot;关联pojo对象的主席属性&quot;/&gt;</span><br><span class="line">    &lt;result  column=&quot;任意表的字段&quot; jdbcType=&quot;字段类型&quot; property=&quot;关联pojo对象的属性&quot;/&gt;</span><br><span class="line">  &lt;/association&gt;</span><br><span class="line">  &lt;!-- 集合中的property须为oftype定义的pojo对象的属性--&gt;</span><br><span class="line">  &lt;collection property=&quot;pojo的集合属性&quot; ofType=&quot;集合中的pojo对象&quot;&gt;</span><br><span class="line">    &lt;id column=&quot;集合中pojo对象对应的表的主键字段&quot; jdbcType=&quot;字段类型&quot; property=&quot;集合中pojo对象的主键属性&quot; /&gt;</span><br><span class="line">    &lt;result column=&quot;可以为任意表的字段&quot; jdbcType=&quot;字段类型&quot; property=&quot;集合中的pojo对象的属性&quot; /&gt;  </span><br><span class="line">  &lt;/collection&gt;</span><br><span class="line">&lt;/resultMap&gt;</span><br></pre></td></tr></table></figure>
-<p>如果collection标签是使用嵌套查询，格式如下：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;collection column=&quot;传递给嵌套查询语句的字段参数&quot; property=&quot;pojo对象中集合属性&quot; ofType=&quot;集合属性中的pojo对象&quot; select=&quot;嵌套的查询语句&quot; &gt; </span><br><span class="line">&lt;/collection&gt;</span><br></pre></td></tr></table></figure></p>
-<h1 id="注意细节"><a href="#注意细节" class="headerlink" title="注意细节"></a>注意细节</h1><p>(#{}表示占位符?，#{}接收简单类型的参数时，里面的名称可以任意),<br>底层实现(PreparStatement)<br>${}接收简单类型的参数时，里面的名称必须是value<br>底层实现(Statement)<br>${}里面的值会原样输出，不加解析（如果该参数值是字符串，有不会添加引号）<br>${}存在sql注入的风险，但是有些场景下必须使用，比如排序后面会动态传入排序的列名</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/03/mybatis/" data-id="cjr1oldsj0001wkgiav0uggmd" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-xc" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/10/30/xc/" class="article-date">
-  <time datetime="2018-10-30T01:36:21.000Z" itemprop="datePublished">2018-10-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/30/xc/">xc</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/10/30/xc/" data-id="cjr1oldsr0003wkgig1n5p5q3" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Test" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/10/27/Test/" class="article-date">
-  <time datetime="2018-10-27T08:48:34.000Z" itemprop="datePublished">2018-10-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/27/Test/">Blog 搭建</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="github-搭建个人博客"><a href="#github-搭建个人博客" class="headerlink" title="github 搭建个人博客"></a>github 搭建个人博客</h1><ol>
-<li><p>下载并安装 node.js  按照安装程序执行最后会自动添加环境变量path</p>
-</li>
-<li><p>打开cmd</p>
-</li>
-<li>hexo（$ npm install -g hexo-cli）</li>
-<li><p>hexo init 你的博客文件夹<br>   cd 你的博客文件夹(确保在博客文件夹)</p>
-<pre><code>npm install
-hexo  new  test.md  
-hexo  s    (hexo server 全命令)
-hexo  g    (hexo generate 全命令)
-</code></pre></li>
-<li><p>下载并安装 Git</p>
-</li>
-<li>github 添加公钥</li>
-<li><p>配置站点信息的-config.yml</p>
-</li>
-<li><p>关联github 修改-config.yml如图：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">11.  deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/friendshiping/friendshiping.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="MarkDown"><a href="#MarkDown" class="headerlink" title="MarkDown"></a>MarkDown</h1><h2 id="超链"><a href="#超链" class="headerlink" title="超链"></a>超链</h2><p><a href="https://www.baidu.com" target="_blank" rel="noopener">href</a></p>
-<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><p><img src="https://markdown-here.com/img/icon256.png" alt="google"><br><img src="./css/images/my.jpg" alt="myimage"></p>
-<h1 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h1><table>
-<thead>
-<tr>
-<th>hfrjg</th>
-<th>ffhfkk</th>
-<th>hfjregjj</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>nfkgnkfd</td>
-<td>fndngmf</td>
-<td>jfndngm</td>
-</tr>
-<tr>
-<td>fjrejglrs</td>
-<td>njrkgjtr</td>
-<td>safjidigg</td>
-</tr>
-<tr>
-<td>jgtrjihglrt</td>
-<td>fuhf</td>
-<td>rgegr</td>
-</tr>
-<tr>
-<td>egergr</td>
-<td>regreg</td>
-<td>gfdgfd</td>
-</tr>
-<tr>
-<td>etregr</td>
-<td>greger</td>
-<td>greeg</td>
-</tr>
-<tr>
-<td>dsads</td>
-<td>rgegr</td>
-<td>regerg</td>
-</tr>
-</tbody>
-</table>
-<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><blockquote>
-<p>Markdown 是 2004 年由 John Gruberis 设计和开发的纯文本格式的语法，所以通过同一个名字它可以使用工具来转换成 HTML。readme 文件，在线论坛编写消息和快速创建富文本文档的文本编辑器都非常流行使用 Markdown 格式。</p>
-</blockquote>
-<h1 id="粗体"><a href="#粗体" class="headerlink" title="粗体"></a>粗体</h1><p><strong>粗体</strong></p>
-<h1 id="斜体"><a href="#斜体" class="headerlink" title="斜体"></a>斜体</h1><p><em>斜体</em></p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">s,b</span>)</span>&#123;</span><br><span class="line">	alert(s+b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/10/27/Test/" data-id="cjr1oldrx0000wkgi3tsy12zm" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
 
 </section>
         
